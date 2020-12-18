@@ -64,6 +64,7 @@ def morning():
         if(count==3):
             curs.execute(morningNoanswer)
             conn.commit()
+            conn.close()
         continue
                    
     logging.info('You said: "%s"' % text)
@@ -79,11 +80,12 @@ def morning():
     elif '아니' in text:
         curs.execute(morningNo)
         conn.commit()
+        conn.close()
         print('ConfirmNo')
         break
             
             
-def lunch():
+def lunch(conn,curs):
     count = 0
     logging.basicConfig(level=logging.DEBUG)
     parser = argparse.ArgumentParser(description='Assistant service example.')
@@ -120,6 +122,7 @@ def lunch():
                 if(count==3):
                     curs.execute(lunchNoanswer)
                     conn.commit()
+                    conn.close()
                     break
                 continue
                            
@@ -128,6 +131,7 @@ def lunch():
             if '먹었어' in text:
                 curs.execute(lunchOkay)
                 conn.commit()
+                conn.close()
                 print('ConfirmOkay')
                 mixer.init()
                 mixer.music.load('/home/pi/Music/lunchanswer.mp3')
@@ -136,6 +140,7 @@ def lunch():
             elif '아니' in text:
                 curs.execute(lunchNo)
                 conn.commit()
+                conn.close()
                 print('ConfirmNo')
                 break
             
@@ -176,6 +181,7 @@ def dinner():
                 if(count==3):
                     curs.execute(dinnerNoanswer)
                     conn.commit()
+                    conn.close()
                     break
                 continue
                            
@@ -192,6 +198,7 @@ def dinner():
             elif '아니' in text:
                 curs.execute(dinnerNo)
                 conn.commit()
+                conn.close()
                 print('ConfirmNo')
                 break
             

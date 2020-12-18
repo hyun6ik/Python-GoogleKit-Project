@@ -9,9 +9,9 @@ from alzheimer import *
 def main():
     
     
-    
+    #객체 생성
     thread_instance = AsyncTask()
-    alzheimer_instance = Alzheimer()
+#     alzheimer_instance = Alzheimer()
     logging.basicConfig(level=logging.DEBUG)
     parser = argparse.ArgumentParser(description='Assistant service example.')
     parser.add_argument('--language', default=locale_language())
@@ -22,29 +22,33 @@ def main():
     hints = get_hints(args.language)
     client = CloudSpeechClient()
     
+    #알람기능
+    alarm = threading.Thread(target = thread_instance.thread_alarm)
+    alarm.start() 
+    
+#     
+#     createDB = threading.Thread(target=thread_instance.thread_date_create)
+#     createDB.start()
+    
+    
+    
     with Board() as board:
         while True:
-            createDB = threading.Thread(target=thread_instance.thread_date_create)
-            createDB.start()
-            
-            alarm = threading.Thread(target = thread_instance.thread_alarm)
-            alarm.start()
-
             
             if hints:
-                logging.info('Say something, e.g. %s.' % ', '.join(hints))
+                logging.info('new_test : Say something, e.g. %s.' % ', '.join(hints))
             else:
-                logging.info('Say something.')
+                logging.info('new_test : Say something.')
             text = client.recognize(language_code=args.language,
                                     hint_phrases=hints)
             
             if  text is None:
-                logging.info('You said nothing.')
+                logging.info('new_test : You said nothing.')
                 continue
             
             
             #
-            logging.info('You said: "%s"' % text)
+            logging.info('new_test : You said: "%s"' % text)
             if '임영웅노래틀어 줘' in text: 
                 sing = threading.Thread(target=thread_instance.sing('/home/pi/Music/임영웅.mp3'))
                 sing.start()

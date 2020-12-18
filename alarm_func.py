@@ -1,0 +1,2 @@
+def morning_func():
+    

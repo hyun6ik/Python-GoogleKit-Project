@@ -1,15 +1,18 @@
 import datetime
 import time
 
-HOST = "172.30.1.8"
+HOST = "users.c5towu0la8hn.ap-northeast-2.rds.amazonaws.com"
 PORT = 3306
-PASSWORD = "123456"
-USER = "hyunsik"
-DB = 'user'
+PASSWORD = "tnswh2023"
+USER = "user"
+DB = "users"
 CHARSET = 'utf8'
 
-morningCount=0
-lunchCount=0
-dinnerCount=0
+# global morningCount
+# morningCount=0
+# global lunchCount
+# lunchCount=0
+# global dinnerCount
+# dinnerCount=0
 
 
